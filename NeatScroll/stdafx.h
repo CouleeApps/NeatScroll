@@ -10,6 +10,10 @@
 #include <stdio.h>
 #include <tchar.h>
 
-
-
-// TODO: reference additional headers your program requires here
+#include <glm/glm.hpp>
+//Convenience
+namespace glm {
+using lvec2 = tvec2<long, highp>;
+using lvec3 = tvec3<long, highp>;
+using lvec4 = tvec4<long, highp>;
+}

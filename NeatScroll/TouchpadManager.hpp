@@ -1,13 +1,5 @@
 #include <SynKit.h>
-#include <glm/glm.hpp>
 #include <vector>
-
-//Convenience
-namespace glm {
-using lvec2 = tvec2<long, highp>;
-using lvec3 = tvec3<long, highp>;
-using lvec4 = tvec4<long, highp>;
-}
 
 class TouchpadManager {
 public:
