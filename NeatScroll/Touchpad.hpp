@@ -34,10 +34,9 @@ public:
 		int index;
 		long timestamp;
 
-		glm::lvec2 origin;
-		glm::lvec2 delta;
-		glm::lvec2 scale;
-		long size;
+		glm::lvec3 origin;
+		glm::lvec3 delta;
+		glm::lvec3 scale;
 		long palm;
 
 		Buttons buttons;

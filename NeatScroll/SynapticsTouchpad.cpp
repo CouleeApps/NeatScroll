@@ -100,9 +100,10 @@ bool SynapticsTouchpad::poll() {
 				OK_OR_CONT(mPacket->GetProperty(SP_W, &w));
 
 				//Movement
-				long dx, dy;
+				long dx, dy, dz;
 				OK_OR_CONT(mPacket->GetProperty(SP_XDelta, &dx));
 				OK_OR_CONT(mPacket->GetProperty(SP_YDelta, &dy));
+				OK_OR_CONT(mPacket->GetProperty(SP_ZDelta, &dz));
 
 				long button;
 				OK_OR_CONT(mPacket->GetProperty(SP_ButtonState, &button));
@@ -113,11 +114,13 @@ bool SynapticsTouchpad::poll() {
 				tp.timestamp = timestamp;
 				tp.scale.x = mBounds.max.x - mBounds.min.x;
 				tp.scale.y = mBounds.max.y - mBounds.min.y;
+				tp.scale.z = mBounds.max.z - mBounds.min.z;
 				tp.origin.x = x - mBounds.min.x;
 				tp.origin.y = y - mBounds.min.y;
+				tp.origin.z = z - mBounds.min.z;
 				tp.delta.x = dx;
 				tp.delta.y = dy;
-				tp.size = z - mBounds.min.z;
+				tp.delta.z = dz;
 				tp.palm = w;
 				tp.buttons = buttonStateToButtons(button);
 
