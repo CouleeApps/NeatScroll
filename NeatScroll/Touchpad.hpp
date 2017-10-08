@@ -1,9 +1,8 @@
 #pragma once
-#include <SynKit.h>
 #include <vector>
 #include <functional>
 
-class TouchpadManager {
+class Touchpad {
 public:
 	struct Buttons {
 		int Left : 1;
@@ -46,7 +45,8 @@ public:
 
 	typedef std::function<void(const std::vector<TouchPoint> &points)> CallbackFn;
 	
-	TouchpadManager();
+	Touchpad() {}
+	virtual ~Touchpad() {}
 	
 	/**
 	 * Set the callback function to receive updates of touchpad input
@@ -57,47 +57,32 @@ public:
 	 * Connect to the touchpad device
 	 * @return If it was successful
 	 */
-	bool connect();
+	virtual bool connect() = 0;
 
 	/**
 	 * Acquire control over the touchpad
 	 * @param exclusive If the control should disable default functionality
 	 * @return If it was successful
 	 */
-	bool acquire(bool exclusive) const;
+	virtual bool acquire(bool exclusive) const = 0;
 
 	/**
 	 * Disconnect from the device and free resources
 	 * @return If it was successful
 	 */
-	bool disconnect();
+	virtual bool disconnect() = 0;
 
 	/**
 	* Poll device, any updates in touches will be fired off to the callback function
 	* @return If it was successful
 	*/
-	bool poll();
+	virtual bool poll() = 0;
 
-	bool postMouseMove(int dx, int dy, Buttons buttons);
-	bool postMouseScroll(int dx, int dy, Buttons buttons);
-	bool postMouseDown(Buttons buttons);
-	bool postMouseUp(Buttons buttons);
+	virtual bool postMouseMove(int dx, int dy, Buttons buttons) = 0;
+	virtual bool postMouseScroll(int dx, int dy, Buttons buttons) = 0;
+	virtual bool postMouseDown(Buttons buttons) = 0;
+	virtual bool postMouseUp(Buttons buttons) = 0;
 
-private:
-	HANDLE mEvent;
-	long mMaxFingers;
+protected:
 	CallbackFn mCallback;
-
-	ISynAPI    *mAPI;
-	ISynDevice *mDevice;
-	ISynGroup  *mGroup;
-	ISynPacket *mPacket;
-
-	struct Bounds {
-		glm::lvec3 min;
-		glm::lvec3 max;
-	} mBounds;
-
-	static Buttons buttonStateToButtons(long buttonState);
-	static long buttonsToButtonState(Buttons buttons);
 };

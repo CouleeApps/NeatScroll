@@ -24,8 +24,11 @@
     <ClInclude Include="targetver.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="TouchpadManager.hpp">
-      <Filter>Resource Files</Filter>
+    <ClInclude Include="Touchpad.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SynapticsTouchpad.hpp">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -35,7 +38,10 @@
     <ClCompile Include="NeatScroll.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="TouchpadManager.cpp">
+    <ClCompile Include="MovementManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SynapticsTouchpad.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

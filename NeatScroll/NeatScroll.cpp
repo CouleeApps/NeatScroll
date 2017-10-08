@@ -1,13 +1,13 @@
 #include "stdafx.h"
 #include <conio.h>
 #include <functional>
-#include "TouchpadManager.hpp"
-#include "MovementManager.hpp"
+#include "Touchpad.hpp"
+#include "SynapticsTouchpad.hpp"
 
 int main(int argc, const char **argv) {
 	using namespace std::placeholders;
 
-	TouchpadManager touchpad;
+	SynapticsTouchpad touchpad;
 
 	if (!touchpad.connect()) {
 		fprintf(stderr, "Could not connect to touchpad\n");

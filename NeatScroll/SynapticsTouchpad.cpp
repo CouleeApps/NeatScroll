@@ -1,15 +1,20 @@
 #include "stdafx.h"
-#include "TouchpadManager.hpp"
+#include "SynapticsTouchpad.hpp"
 
 //Convenience
-#define OR_FALSE(test) if (!test) { return false; }
-#define OK_OR_FALSE(test) if (test != SYN_OK) { return false; }
-#define OK_OR_CONT(test) if (test != SYN_OK) { continue; }
+#define OR_FALSE(test) if (!(test)) { return false; }
+#define OK_OR_FALSE(test) if ((test) != SYN_OK) { return false; }
+#define OK_OR_CONT(test) if ((test) != SYN_OK) { continue; }
 
-TouchpadManager::TouchpadManager() {
+SynapticsTouchpad::SynapticsTouchpad() : Touchpad() {
+
 }
 
-bool TouchpadManager::connect() {
+SynapticsTouchpad::~SynapticsTouchpad() {
+
+}
+
+bool SynapticsTouchpad::connect() {
 	//Init touchpad api
 	OK_OR_FALSE(SynCreateAPI(&mAPI));
 
@@ -49,13 +54,13 @@ bool TouchpadManager::connect() {
 }
 
 
-bool TouchpadManager::acquire(bool exclusive) const {
+bool SynapticsTouchpad::acquire(bool exclusive) const {
 	OK_OR_FALSE(mDevice->Acquire(exclusive ? SE_AcquireExclusive : SE_AcquirePassive));
 
 	return true;
 }
 
-bool TouchpadManager::disconnect() {
+bool SynapticsTouchpad::disconnect() {
 	//Stop sending events
 	OK_OR_FALSE(mDevice->SetEventNotification(NULL));
 
@@ -67,10 +72,10 @@ bool TouchpadManager::disconnect() {
 	return true;
 }
 
-bool TouchpadManager::poll() {
+bool SynapticsTouchpad::poll() {
 	//Check for new events
-	WaitForSingleObject(mEvent, 0);
-	
+	OR_FALSE(WaitForSingleObject(mEvent, 0) != WAIT_FAILED);
+
 	//Poll the events until we can't
 	while (mDevice->LoadGroup(mGroup) != SYNE_FAIL && mGroup) {
 		std::vector<TouchPoint> points;
@@ -127,13 +132,13 @@ bool TouchpadManager::poll() {
 	return true;
 }
 
-bool TouchpadManager::postMouseMove(int dx, int dy, Buttons buttons) {
+bool SynapticsTouchpad::postMouseMove(int dx, int dy, Buttons buttons) {
 	OK_OR_FALSE(mDevice->ForceMotion(static_cast<LONG>(dx), static_cast<LONG>(dy), buttonsToButtonState(buttons)));
 
 	return true;
 }
 
-bool TouchpadManager::postMouseScroll(int dx, int dy, Buttons buttons) {
+bool SynapticsTouchpad::postMouseScroll(int dx, int dy, Buttons buttons) {
 	if (dx != 0) {
 		OK_OR_FALSE(mDevice->ForceMotionWithWheel(0, 0, buttonsToButtonState(buttons), static_cast<LONG>(dx)));
 	}
@@ -143,15 +148,15 @@ bool TouchpadManager::postMouseScroll(int dx, int dy, Buttons buttons) {
 	return true;
 }
 
-bool TouchpadManager::postMouseDown(Buttons buttons) {
+bool SynapticsTouchpad::postMouseDown(Buttons buttons) {
 	return false;
 }
 
-bool TouchpadManager::postMouseUp(Buttons buttons) {
+bool SynapticsTouchpad::postMouseUp(Buttons buttons) {
 	return false;
 }
 
-TouchpadManager::Buttons TouchpadManager::buttonStateToButtons(long buttonState) {
+Touchpad::Buttons SynapticsTouchpad::buttonStateToButtons(long buttonState) {
 	Buttons buttons;
 	if (buttonState & SF_ButtonLeft)   buttons.Left = 1;
 	if (buttonState & SF_ButtonMiddle) buttons.Middle = 1;
@@ -160,7 +165,7 @@ TouchpadManager::Buttons TouchpadManager::buttonStateToButtons(long buttonState)
 	if (buttonState & SF_Button5)      buttons.Button5 = 1;
 	return buttons;
 }
-long TouchpadManager::buttonsToButtonState(Buttons buttons) {
+long SynapticsTouchpad::buttonsToButtonState(Touchpad::Buttons buttons) {
 	long buttonState = 0;
 	if (buttons.Left)    buttonState |= SF_ButtonLeft;
 	if (buttons.Middle)  buttonState |= SF_ButtonMiddle;
