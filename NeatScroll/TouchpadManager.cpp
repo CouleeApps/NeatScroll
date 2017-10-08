@@ -6,7 +6,7 @@
 #define OK_OR_FALSE(test) if (test != SYN_OK) { return false; }
 #define OK_OR_CONT(test) if (test != SYN_OK) { continue; }
 
-TouchpadManager::TouchpadManager(CallbackFn callback) : mCallback(callback) {
+TouchpadManager::TouchpadManager() {
 }
 
 bool TouchpadManager::connect() {
@@ -99,26 +99,73 @@ bool TouchpadManager::poll() {
 				OK_OR_CONT(mPacket->GetProperty(SP_XDelta, &dx));
 				OK_OR_CONT(mPacket->GetProperty(SP_YDelta, &dy));
 
+				long button;
+				OK_OR_CONT(mPacket->GetProperty(SP_ButtonState, &button));
+
 				//Structure to feed into the callback 
 				TouchPoint tp;
 				tp.index = i;
 				tp.timestamp = timestamp;
-				tp.scale.x = (float)(mBounds.max.x - mBounds.min.x);
-				tp.scale.y = (float)(mBounds.max.y - mBounds.min.y);
-				//Scale position to [0, 1] instead of the raw value
-				tp.origin.x = (float)(x - mBounds.min.x) / tp.scale.x;
-				tp.origin.y = (float)(y - mBounds.min.y) / tp.scale.y;
-				tp.delta.x = (float)(dx) / tp.scale.x;
-				tp.delta.y = (float)(dy) / tp.scale.y;
-				//Scaling size too because we can 
-				tp.size = (float)(z - mBounds.min.z) / (float)(mBounds.max.z - mBounds.min.z);
+				tp.scale.x = mBounds.max.x - mBounds.min.x;
+				tp.scale.y = mBounds.max.y - mBounds.min.y;
+				tp.origin.x = x - mBounds.min.x;
+				tp.origin.y = y - mBounds.min.y;
+				tp.delta.x = dx;
+				tp.delta.y = dy;
+				tp.size = z - mBounds.min.z;
 				tp.palm = w;
+				tp.buttons = buttonStateToButtons(button);
 
 				points.push_back(tp);
 			}
 		}
 		//Got all the points, let em go
-		mCallback(points);
+		if (mCallback) {
+			mCallback(points);
+		}
 	}
 	return true;
+}
+
+bool TouchpadManager::postMouseMove(int dx, int dy, Buttons buttons) {
+	OK_OR_FALSE(mDevice->ForceMotion(static_cast<LONG>(dx), static_cast<LONG>(dy), buttonsToButtonState(buttons)));
+
+	return true;
+}
+
+bool TouchpadManager::postMouseScroll(int dx, int dy, Buttons buttons) {
+	if (dx != 0) {
+		OK_OR_FALSE(mDevice->ForceMotionWithWheel(0, 0, buttonsToButtonState(buttons), static_cast<LONG>(dx)));
+	}
+	if (dy != 0) {
+		OK_OR_FALSE(mDevice->ForceMotionWithHorizontalWheel(0, 0, buttonsToButtonState(buttons), static_cast<LONG>(dy)));
+	}
+	return true;
+}
+
+bool TouchpadManager::postMouseDown(Buttons buttons) {
+	return false;
+}
+
+bool TouchpadManager::postMouseUp(Buttons buttons) {
+	return false;
+}
+
+TouchpadManager::Buttons TouchpadManager::buttonStateToButtons(long buttonState) {
+	Buttons buttons;
+	if (buttonState & SF_ButtonLeft)   buttons.Left = 1;
+	if (buttonState & SF_ButtonMiddle) buttons.Middle = 1;
+	if (buttonState & SF_ButtonRight)  buttons.Right = 1;
+	if (buttonState & SF_Button4)      buttons.Button4 = 1;
+	if (buttonState & SF_Button5)      buttons.Button5 = 1;
+	return buttons;
+}
+long TouchpadManager::buttonsToButtonState(Buttons buttons) {
+	long buttonState = 0;
+	if (buttons.Left)    buttonState |= SF_ButtonLeft;
+	if (buttons.Middle)  buttonState |= SF_ButtonMiddle;
+	if (buttons.Right)   buttonState |= SF_ButtonRight;
+	if (buttons.Button4) buttonState |= SF_Button4;
+	if (buttons.Button5) buttonState |= SF_Button5;
+	return buttonState;
 }

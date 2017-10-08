@@ -1,13 +1,13 @@
 #include "stdafx.h"
 #include <conio.h>
+#include <functional>
 #include "TouchpadManager.hpp"
+#include "MovementManager.hpp"
 
 int main(int argc, const char **argv) {
-	TouchpadManager touchpad([](const std::vector<TouchpadManager::TouchPoint> &points) {
-		for (const auto &tp : points) {
-			printf("%u %f %f %f %i\n", tp.timestamp, tp.origin.x, tp.origin.y, tp.size, tp.palm);
-		}
-	});
+	using namespace std::placeholders;
+
+	TouchpadManager touchpad;
 
 	if (!touchpad.connect()) {
 		fprintf(stderr, "Could not connect to touchpad\n");
