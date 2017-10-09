@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "FourFingersUpGesture.h"
 #include <Windows.h>
+#include "WinTabDetector.h"
 
 bool FourFingersUpGestureRecognizer::onMovementStart(const Movement &movement) {
 	return false;
@@ -8,6 +9,9 @@ bool FourFingersUpGestureRecognizer::onMovementStart(const Movement &movement) {
 
 bool FourFingersUpGestureRecognizer::onMovementMove(const Movement &movement) {
 	if (movement.mPointCount != 4) {
+		return false;
+	}
+	if (WinTabDetector::isWinTab()) {
 		return false;
 	}
 

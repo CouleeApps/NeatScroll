@@ -48,6 +48,9 @@
     <ClInclude Include="FourFingersUpGesture.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="WinTabDetector.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -72,6 +75,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="FourFingersUpGesture.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="WinTabDetector.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
