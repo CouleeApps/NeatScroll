@@ -1,13 +1,13 @@
 #pragma once
 #include "Touchpad.hpp"
 #include <unordered_map>
-#include "Gesture.h"
+#include "Movement.h"
 
 class GestureUpdateHandler {
 public:
-	virtual void onGestureStart(const Gesture &gesture) = 0;
-	virtual void onGestureMove(const Gesture &gesture) = 0;
-	virtual void onGestureStop(const Gesture &gesture) = 0;
+	virtual void onMovementStart(const Movement &movement) = 0;
+	virtual void onMovementMove(const Movement &movement) = 0;
+	virtual void onMovementStop(const Movement &movement) = 0;
 };
 
 class GestureDetector : public TouchpadUpdateHandler {
@@ -19,7 +19,7 @@ public:
 	virtual void update(const std::vector<Touchpad::TouchPoint> &points) override;
 private:
 	Touchpad &mTouchpad;
-	Gesture mGesture;
+	Movement mGesture;
 	bool mGestureActive;
 	float mGestureThreshold;
 	GestureUpdateHandler *mHandler;

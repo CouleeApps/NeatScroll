@@ -66,7 +66,7 @@ void GestureDetector::touchStop(const std::vector<Touchpad::TouchPoint> &points)
 
 	//On gesture finish
 	if (mHandler) {
-		mHandler->onGestureStop(mGesture);
+		mHandler->onMovementStop(mGesture);
 	}
 }
 
@@ -95,7 +95,7 @@ void GestureDetector::touchMove(const std::vector<Touchpad::TouchPoint> &points)
 			mGesture.mMetThreshold = true;
 			//On gesture start
 			if (mHandler) {
-				mHandler->onGestureStart(mGesture);
+				mHandler->onMovementStart(mGesture);
 			}
 		} else {
 			//Can't say we've updated if we haven't started
@@ -105,6 +105,6 @@ void GestureDetector::touchMove(const std::vector<Touchpad::TouchPoint> &points)
 
 	//On gesture update
 	if (mHandler) {
-		mHandler->onGestureMove(mGesture);
+		mHandler->onMovementMove(mGesture);
 	}
 }

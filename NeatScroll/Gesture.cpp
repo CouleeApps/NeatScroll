@@ -1,18 +1,6 @@
 #include "stdafx.h"
-#include "Gesture.h"
+#include "Gesture.hpp"
 
-Gesture::Gesture() {
+Gesture::Gesture(Recognizer &recognizer, Performer &performer) : mRecognizer(recognizer), mPerformer(performer) {
 
-}
-
-Gesture::~Gesture() {
-
-}
-
-std::vector<glm::lvec3> Gesture::getDeltas() const {
-	std::vector<glm::lvec3> deltas;
-	for (int i = 0; i < mPointCount; i++) {
-		deltas.push_back(mPoints[i].origin - mStartPoints[i].origin);
-	}
-	return deltas;
 }

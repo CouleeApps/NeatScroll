@@ -3,10 +3,10 @@
 #include <vector>
 #include "Touchpad.hpp"
 
-struct Gesture {
+struct Movement {
 public:
-	Gesture();
-	~Gesture();
+	Movement();
+	~Movement();
 
 	int mPointCount;
 	bool mMetThreshold;

@@ -33,10 +33,19 @@
     <ClInclude Include="SynapticsTouchpad.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Gesture.h">
+    <ClInclude Include="GestureDetector.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="GestureDetector.hpp">
+    <ClInclude Include="GestureHandler.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Movement.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Gesture.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FourFingersUpGesture.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -50,10 +59,19 @@
     <ClCompile Include="SynapticsTouchpad.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="GestureDetector.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GestureHandler.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Movement.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="Gesture.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="GestureDetector.cpp">
+    <ClCompile Include="FourFingersUpGesture.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
