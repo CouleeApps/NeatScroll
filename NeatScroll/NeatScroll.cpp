@@ -4,6 +4,7 @@
 #include "SynapticsTouchpad.hpp"
 #include "GestureDetector.hpp"
 #include "GestureHandler.hpp"
+#include "FourFingersUpGesture.h"
 
 int main(int argc, const char **argv) {
 	using namespace std::placeholders;
@@ -13,6 +14,9 @@ int main(int argc, const char **argv) {
 	GestureHandler handler;
 	touchpad.setHandler(&detector);
 	detector.setGestureHandler(&handler);
+
+	Gesture ffuGesture{ FourFingersUpGestureRecognizer(), FourFingersUpGesturePerformer() };
+	handler.addGesture(&ffuGesture);
 
 	if (!touchpad.connect()) {
 		fprintf(stderr, "Could not connect to touchpad\n");
