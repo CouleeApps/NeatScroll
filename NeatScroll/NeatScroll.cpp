@@ -6,6 +6,8 @@
 #include "GestureHandler.hpp"
 #include "FourFingersUpGesture.h"
 #include "FourFingersDownGesture.h"
+#include "FourFingersLeftGesture.h"
+#include "FourFingersRightGesture.h"
 #include "WinTabDetector.h"
 #include <thread>
 
@@ -20,8 +22,12 @@ int main(int argc, const char **argv) {
 
 	Gesture ffuGesture{ FourFingersUpGestureRecognizer(), FourFingersUpGesturePerformer() };
 	Gesture ffdGesture{ FourFingersDownGestureRecognizer(), FourFingersDownGesturePerformer() };
+	Gesture fflGesture{ FourFingersLeftGestureRecognizer(), FourFingersLeftGesturePerformer() };
+	Gesture ffrGesture{ FourFingersRightGestureRecognizer(), FourFingersRightGesturePerformer() };
 	handler.addGesture(&ffuGesture);
 	handler.addGesture(&ffdGesture);
+	handler.addGesture(&fflGesture);
+	handler.addGesture(&ffrGesture);
 
 	if (!touchpad.connect()) {
 		fprintf(stderr, "Could not connect to touchpad\n");

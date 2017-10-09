@@ -54,6 +54,12 @@
     <ClInclude Include="FourFingersDownGesture.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="FourFingersLeftGesture.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FourFingersRightGesture.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -84,6 +90,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="FourFingersDownGesture.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="FourFingersLeftGesture.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="FourFingersRightGesture.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
