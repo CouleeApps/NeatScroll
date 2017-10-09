@@ -2,14 +2,14 @@
 #include <functional>
 #include "Touchpad.hpp"
 #include "SynapticsTouchpad.hpp"
-#include "MovementManager.hpp"
+#include "GestureRecognizer.hpp"
 
 int main(int argc, const char **argv) {
 	using namespace std::placeholders;
 
 	SynapticsTouchpad touchpad;
-	MovementManager movement(touchpad);
-	touchpad.setCallback(std::bind(&MovementManager::update, &movement, _1));
+	GestureRecognizer movement(touchpad);
+	touchpad.setCallback(std::bind(&GestureRecognizer::update, &movement, _1));
 
 	if (!touchpad.connect()) {
 		fprintf(stderr, "Could not connect to touchpad\n");

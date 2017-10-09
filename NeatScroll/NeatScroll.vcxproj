@@ -153,6 +153,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="bezier.h" />
+    <ClInclude Include="Gesture.h" />
     <ClInclude Include="MovementManager.hpp" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="SynapticsTouchpad.hpp" />
@@ -160,6 +161,7 @@
     <ClInclude Include="Touchpad.hpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Gesture.cpp" />
     <ClCompile Include="MovementManager.cpp" />
     <ClCompile Include="NeatScroll.cpp" />
     <ClCompile Include="stdafx.cpp">
