@@ -153,6 +153,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="bezier.h" />
+    <ClInclude Include="FourFingersDownGesture.h" />
     <ClInclude Include="FourFingersUpGesture.h" />
     <ClInclude Include="Gesture.hpp" />
     <ClInclude Include="Movement.h" />
@@ -165,6 +166,7 @@
     <ClInclude Include="WinTabDetector.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="FourFingersDownGesture.cpp" />
     <ClCompile Include="FourFingersUpGesture.cpp" />
     <ClCompile Include="Gesture.cpp" />
     <ClCompile Include="Movement.cpp" />
