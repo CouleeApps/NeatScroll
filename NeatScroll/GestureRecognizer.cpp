@@ -46,10 +46,11 @@ void GestureRecognizer::update(const std::vector<Touchpad::TouchPoint> &points) 
 
 void GestureRecognizer::touchStart(const std::vector<Touchpad::TouchPoint> &points) {
 	//Gesture is not actually recognized as "starting" here, this simply starts detecting updates
-	mGesture.mPointCount = points.size();
+	mGestureActive = true;
+	//Reset current gesture
+	mGesture.mPointCount = static_cast<int>(points.size());
 	mGesture.mStartPoints = points;
 	mGesture.mMetThreshold = false;
-	mGestureActive = true;
 }
 
 void GestureRecognizer::touchStop(const std::vector<Touchpad::TouchPoint> &points) {
@@ -58,12 +59,15 @@ void GestureRecognizer::touchStop(const std::vector<Touchpad::TouchPoint> &point
 	}
 	mGestureActive = false;
 
+	//Don't care if we haven't started
 	if (!mGesture.mMetThreshold) {
 		return;
 	}
 
 	//On gesture finish
-	//printf("\n");
+	if (mHandler) {
+		mHandler->onGestureStop(mGesture);
+	}
 }
 
 void GestureRecognizer::touchMove(const std::vector<Touchpad::TouchPoint> &points) {
@@ -71,8 +75,13 @@ void GestureRecognizer::touchMove(const std::vector<Touchpad::TouchPoint> &point
 		return;
 	}
 
+	//Update the current gesture's state
 	mGesture.mPoints = points;
 
+	//Check average distance moved by all fingers. If this meets the threshold then
+	// we can say a gesture has started.
+
+	//TODO: Is this better or worse than 'if any finger meets the threshold'?
 	std::vector<glm::lvec3> deltas = mGesture.getDeltas();
 	glm::vec3 avgDelta;
 	for (const glm::lvec3 &delta : deltas) {
@@ -80,16 +89,22 @@ void GestureRecognizer::touchMove(const std::vector<Touchpad::TouchPoint> &point
 	}
 	avgDelta /= (float)mGesture.mPointCount;
 
+	//If we haven't started yet, check to see if we meet the threshold.
 	if (!mGesture.mMetThreshold) {
 		if (glm::length(avgDelta) > mGestureThreshold) {
 			mGesture.mMetThreshold = true;
 			//On gesture start
+			if (mHandler) {
+				mHandler->onGestureStart(mGesture);
+			}
 		} else {
+			//Can't say we've updated if we haven't started
 			return;
 		}
-
 	}
 
 	//On gesture update
-	//printf("%d finger gesture delta %8g %8g %8g\r", mGesture.mPointCount, avgDelta.x, avgDelta.y, avgDelta.z);
+	if (mHandler) {
+		mHandler->onGestureMove(mGesture);
+	}
 }

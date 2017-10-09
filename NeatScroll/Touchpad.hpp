@@ -2,6 +2,7 @@
 #include <vector>
 #include <functional>
 
+class TouchpadUpdateHandler;
 class Touchpad {
 public:
 	struct Buttons {
@@ -42,15 +43,13 @@ public:
 		Buttons buttons;
 	};
 
-	typedef std::function<void(const std::vector<TouchPoint> &points)> CallbackFn;
-	
 	Touchpad() {}
 	virtual ~Touchpad() {}
 	
 	/**
-	 * Set the callback function to receive updates of touchpad input
+	 * Set the handler to receive updates of touchpad input
 	 */
-	void setCallback(CallbackFn callback) { mCallback = callback; }
+	void setHandler(TouchpadUpdateHandler *handler) { mHandler = handler; }
 
 	/**
 	 * Connect to the touchpad device
@@ -83,5 +82,10 @@ public:
 	virtual bool postMouseUp(Buttons buttons) = 0;
 
 protected:
-	CallbackFn mCallback;
+	TouchpadUpdateHandler *mHandler;
+};
+
+class TouchpadUpdateHandler {
+public:
+	virtual void update(const std::vector<Touchpad::TouchPoint> &points) = 0;
 };

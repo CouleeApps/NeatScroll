@@ -9,7 +9,7 @@ int main(int argc, const char **argv) {
 
 	SynapticsTouchpad touchpad;
 	GestureRecognizer movement(touchpad);
-	touchpad.setCallback(std::bind(&GestureRecognizer::update, &movement, _1));
+	touchpad.setHandler(&movement);
 
 	if (!touchpad.connect()) {
 		fprintf(stderr, "Could not connect to touchpad\n");

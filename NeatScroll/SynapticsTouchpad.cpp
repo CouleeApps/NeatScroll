@@ -128,8 +128,8 @@ bool SynapticsTouchpad::poll() {
 			}
 		}
 		//Got all the points, let em go
-		if (mCallback) {
-			mCallback(points);
+		if (mHandler) {
+			mHandler->update(points);
 		}
 	}
 	return true;
