@@ -2,13 +2,13 @@
 #include <functional>
 #include "Touchpad.hpp"
 #include "SynapticsTouchpad.hpp"
-#include "GestureRecognizer.hpp"
+#include "GestureDetector.hpp"
 
 int main(int argc, const char **argv) {
 	using namespace std::placeholders;
 
 	SynapticsTouchpad touchpad;
-	GestureRecognizer movement(touchpad);
+	GestureDetector movement(touchpad);
 	touchpad.setHandler(&movement);
 
 	if (!touchpad.connect()) {

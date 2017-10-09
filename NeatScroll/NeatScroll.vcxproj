@@ -154,7 +154,7 @@
   <ItemGroup>
     <ClInclude Include="bezier.h" />
     <ClInclude Include="Gesture.h" />
-    <ClInclude Include="GestureRecognizer.hpp" />
+    <ClInclude Include="GestureDetector.hpp" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="SynapticsTouchpad.hpp" />
     <ClInclude Include="targetver.h" />
@@ -162,7 +162,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Gesture.cpp" />
-    <ClCompile Include="GestureRecognizer.cpp" />
+    <ClCompile Include="GestureDetector.cpp" />
     <ClCompile Include="NeatScroll.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>

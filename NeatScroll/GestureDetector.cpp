@@ -1,16 +1,16 @@
 #include "stdafx.h"
-#include "GestureRecognizer.hpp"
+#include "GestureDetector.hpp"
 #include "bezier.h"
 
-GestureRecognizer::GestureRecognizer(Touchpad &touchpad) : mTouchpad(touchpad) {
+GestureDetector::GestureDetector(Touchpad &touchpad) : mTouchpad(touchpad) {
 	mGestureActive = false;
 	mGestureThreshold = 50.f;
 }
 
-GestureRecognizer::~GestureRecognizer() {
+GestureDetector::~GestureDetector() {
 }
 
-void GestureRecognizer::update(const std::vector<Touchpad::TouchPoint> &points) {
+void GestureDetector::update(const std::vector<Touchpad::TouchPoint> &points) {
 	if (points.size() > 0) {
 		//Start a gesture if we've stopped
 		if (!mGestureActive) {
@@ -44,7 +44,7 @@ void GestureRecognizer::update(const std::vector<Touchpad::TouchPoint> &points) 
 	}
 }
 
-void GestureRecognizer::touchStart(const std::vector<Touchpad::TouchPoint> &points) {
+void GestureDetector::touchStart(const std::vector<Touchpad::TouchPoint> &points) {
 	//Gesture is not actually recognized as "starting" here, this simply starts detecting updates
 	mGestureActive = true;
 	//Reset current gesture
@@ -53,7 +53,7 @@ void GestureRecognizer::touchStart(const std::vector<Touchpad::TouchPoint> &poin
 	mGesture.mMetThreshold = false;
 }
 
-void GestureRecognizer::touchStop(const std::vector<Touchpad::TouchPoint> &points) {
+void GestureDetector::touchStop(const std::vector<Touchpad::TouchPoint> &points) {
 	if (!mGestureActive) {
 		return;
 	}
@@ -70,7 +70,7 @@ void GestureRecognizer::touchStop(const std::vector<Touchpad::TouchPoint> &point
 	}
 }
 
-void GestureRecognizer::touchMove(const std::vector<Touchpad::TouchPoint> &points) {
+void GestureDetector::touchMove(const std::vector<Touchpad::TouchPoint> &points) {
 	if (!mGestureActive) {
 		return;
 	}

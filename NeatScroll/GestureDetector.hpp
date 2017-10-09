@@ -3,26 +3,26 @@
 #include <unordered_map>
 #include "Gesture.h"
 
-class GestureHandler {
+class GestureUpdateHandler {
 public:
 	virtual void onGestureStart(const Gesture &gesture) = 0;
 	virtual void onGestureMove(const Gesture &gesture) = 0;
 	virtual void onGestureStop(const Gesture &gesture) = 0;
 };
 
-class GestureRecognizer : public TouchpadUpdateHandler {
+class GestureDetector : public TouchpadUpdateHandler {
 public:
-	GestureRecognizer(Touchpad &touchpad);
-	~GestureRecognizer();
+	GestureDetector(Touchpad &touchpad);
+	~GestureDetector();
 
-	void setGestureHandler(GestureHandler *handler) { mHandler = handler; }
+	void setGestureHandler(GestureUpdateHandler *handler) { mHandler = handler; }
 	virtual void update(const std::vector<Touchpad::TouchPoint> &points) override;
 private:
 	Touchpad &mTouchpad;
 	Gesture mGesture;
 	bool mGestureActive;
 	float mGestureThreshold;
-	GestureHandler *mHandler;
+	GestureUpdateHandler *mHandler;
 
 	void touchStart(const std::vector<Touchpad::TouchPoint> &points);
 	void touchStop(const std::vector<Touchpad::TouchPoint> &points);

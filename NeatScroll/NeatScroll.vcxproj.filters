@@ -36,7 +36,7 @@
     <ClInclude Include="Gesture.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="GestureRecognizer.hpp">
+    <ClInclude Include="GestureDetector.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -53,7 +53,7 @@
     <ClCompile Include="Gesture.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="GestureRecognizer.cpp">
+    <ClCompile Include="GestureDetector.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
