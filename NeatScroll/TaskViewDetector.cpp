@@ -2,6 +2,7 @@
 #include "TaskViewDetector.h"
 #include <Windows.h>
 #include <string>
+#include <chrono>
 
 bool foundShell = false;
 
@@ -21,7 +22,13 @@ BOOL CALLBACK EnumChildProc(HWND hWnd, LPARAM lParam) {
 }
 
 bool TaskViewDetector::isTaskView() {
-	foundShell = false;
-	EnumChildWindows(GetDesktopWindow(), EnumChildProc, NULL);
+	static std::chrono::system_clock::time_point lastUpdate = std::chrono::system_clock::now();
+
+	//This is slow so only update occasionally
+	if ((std::chrono::system_clock::now() - lastUpdate) > std::chrono::milliseconds(50)) {
+		lastUpdate = std::chrono::system_clock::now();
+		foundShell = false;
+		EnumChildWindows(GetDesktopWindow(), EnumChildProc, NULL);
+	}
 	return !foundShell;
 }
