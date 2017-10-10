@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "FourFingersUpGesture.h"
 #include <Windows.h>
-#include "WinTabDetector.h"
+#include "TaskViewDetector.h"
 
 bool FourFingersUpGestureRecognizer::onMovementStart(const Movement &movement) {
 	return false;
@@ -11,18 +11,21 @@ bool FourFingersUpGestureRecognizer::onMovementMove(const Movement &movement) {
 	if (movement.mPointCount != 4) {
 		return false;
 	}
-	if (WinTabDetector::isWinTab()) {
-		return false;
-	}
 
 	//See if all fingers on the gesture moved up by ~3/10 the scale
 	float avgUp = 0;
-	for (int i = 0; i < movement.mPointCount; i ++) {
+	for (int i = 0; i < movement.mPointCount; i++) {
 		glm::lvec3 scale = movement.mPoints[0].scale;
 		glm::vec3 delta = glm::vec3(movement.mPoints[i].origin - movement.mStartPoints[i].origin);
 		avgUp += delta.y /= scale.y;
 	}
-	return avgUp > 0.3f;
+	if (avgUp < 0.3f) {
+		return false;
+	}
+	if (TaskViewDetector::isTaskView()) {
+		return false;
+	}
+	return true;
 }
 
 bool FourFingersUpGestureRecognizer::onMovementStop(const Movement &movement) {

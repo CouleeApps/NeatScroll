@@ -165,7 +165,7 @@
     <ClInclude Include="SynapticsTouchpad.hpp" />
     <ClInclude Include="targetver.h" />
     <ClInclude Include="Touchpad.hpp" />
-    <ClInclude Include="WinTabDetector.h" />
+    <ClInclude Include="TaskViewDetector.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="FourFingersDownGesture.cpp" />
@@ -184,7 +184,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="SynapticsTouchpad.cpp" />
-    <ClCompile Include="WinTabDetector.cpp" />
+    <ClCompile Include="TaskViewDetector.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

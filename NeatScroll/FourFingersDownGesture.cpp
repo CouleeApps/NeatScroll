@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "FourFingersDownGesture.h"
 #include <Windows.h>
-#include "WinTabDetector.h"
+#include "TaskViewDetector.h"
 
 bool FourFingersDownGestureRecognizer::onMovementStart(const Movement &movement) {
 	return false;
@@ -9,9 +9,6 @@ bool FourFingersDownGestureRecognizer::onMovementStart(const Movement &movement)
 
 bool FourFingersDownGestureRecognizer::onMovementMove(const Movement &movement) {
 	if (movement.mPointCount != 4) {
-		return false;
-	}
-	if (!WinTabDetector::isWinTab()) {
 		return false;
 	}
 
@@ -22,7 +19,13 @@ bool FourFingersDownGestureRecognizer::onMovementMove(const Movement &movement) 
 		glm::vec3 delta = glm::vec3(movement.mPoints[i].origin - movement.mStartPoints[i].origin);
 		avgUp += delta.y /= scale.y;
 	}
-	return avgUp < -0.3f;
+	if (avgUp > -0.3f) {
+		return false;
+	}
+	if (!TaskViewDetector::isTaskView()) {
+		return false;
+	}
+	return true;
 }
 
 bool FourFingersDownGestureRecognizer::onMovementStop(const Movement &movement) {

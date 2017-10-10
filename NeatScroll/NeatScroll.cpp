@@ -8,7 +8,6 @@
 #include "FourFingersDownGesture.h"
 #include "FourFingersLeftGesture.h"
 #include "FourFingersRightGesture.h"
-#include "WinTabDetector.h"
 #include <thread>
 
 int main(int argc, const char **argv) {
@@ -34,8 +33,6 @@ int main(int argc, const char **argv) {
 		return EXIT_FAILURE;
 	}
 
-	WinTabDetector::start();
-
 	//To disable the system using this, uncomment this line.
 	// Just make sure you have a mouse nearby in case the program crashes
 	//touchpad.acquire(true);
@@ -44,7 +41,6 @@ int main(int argc, const char **argv) {
 		if (!touchpad.poll()) {
 			break;
 		}
-		WinTabDetector::update();
 		//Performance
 		std::this_thread::sleep_for(std::chrono::microseconds(1));
 	}
@@ -53,8 +49,6 @@ int main(int argc, const char **argv) {
 		fprintf(stderr, "Error disconnecting touchpad\n");
 		return EXIT_FAILURE;
 	}
-
-	WinTabDetector::stop();
 
 	return EXIT_SUCCESS;
 }

@@ -1,7 +1,6 @@
 #include "stdafx.h"
 #include "FourFingersLeftGesture.h"
 #include <Windows.h>
-#include "WinTabDetector.h"
 
 bool FourFingersLeftGestureRecognizer::onMovementStart(const Movement &movement) {
 	return false;
