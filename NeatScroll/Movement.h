@@ -13,5 +13,8 @@ public:
 	std::vector<Touchpad::TouchPoint> mStartPoints;
 
 	std::vector<glm::lvec3> getDeltas() const;
+	std::vector<glm::vec3> getRelativeDeltas() const;
+	glm::vec3 getAverageDelta() const;
+	glm::vec3 getAverageRelativeDelta() const;
 };
 

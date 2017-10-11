@@ -12,14 +12,8 @@ bool FourFingersUpGestureRecognizer::onMovementMove(const Movement &movement) {
 		return false;
 	}
 
-	//See if all fingers on the gesture moved up by ~3/10 the scale
-	float avgUp = 0;
-	for (int i = 0; i < movement.mPointCount; i++) {
-		glm::lvec3 scale = movement.mPoints[0].scale;
-		glm::vec3 delta = glm::vec3(movement.mPoints[i].origin - movement.mStartPoints[i].origin);
-		avgUp += delta.y /= scale.y;
-	}
-	if (avgUp < 0.3f) {
+	//See if all fingers on the gesture moved up by ~2/10 the scale
+	if (movement.getAverageRelativeDelta().y < 0.2f) {
 		return false;
 	}
 	if (TaskViewDetector::isTaskView()) {

@@ -82,12 +82,7 @@ void MovementDetector::touchMove(const std::vector<Touchpad::TouchPoint> &points
 	// we can say a gesture has started.
 
 	//TODO: Is this better or worse than 'if any finger meets the threshold'?
-	std::vector<glm::lvec3> deltas = mMovement.getDeltas();
-	glm::vec3 avgDelta;
-	for (const glm::lvec3 &delta : deltas) {
-		avgDelta += glm::vec3(delta);
-	}
-	avgDelta /= (float)mMovement.mPointCount;
+	glm::vec3 avgDelta = mMovement.getAverageDelta();
 
 	//If we haven't started yet, check to see if we meet the threshold.
 	if (!mMetThreshold) {

@@ -11,14 +11,8 @@ bool FourFingersLeftGestureRecognizer::onMovementMove(const Movement &movement) 
 		return false;
 	}
 
-	//See if all fingers on the gesture moved up by ~3/10 the scale
-	float avgSide = 0;
-	for (int i = 0; i < movement.mPointCount; i++) {
-		glm::lvec3 scale = movement.mPoints[0].scale;
-		glm::vec3 delta = glm::vec3(movement.mPoints[i].origin - movement.mStartPoints[i].origin);
-		avgSide += delta.x /= scale.x;
-	}
-	return avgSide < -0.3f;
+	//See if all fingers on the gesture moved up by ~2/10 the scale
+	return movement.getAverageRelativeDelta().x < -0.2f;
 }
 
 bool FourFingersLeftGestureRecognizer::onMovementStop(const Movement &movement) {
