@@ -13,10 +13,12 @@ set(SOURCE_FILES
         NeatScroll/GestureHandler.cpp
         NeatScroll/MovementDetector.cpp
         NeatScroll/Gesture.cpp
-        NeatScroll/FourFingersUpGesture.cpp
-        NeatScroll/FourFingersRightGesture.cpp
-        NeatScroll/FourFingersLeftGesture.cpp
-        NeatScroll/FourFingersDownGesture.cpp
+        NeatScroll/Gestures/FourFingersUpGesture.cpp
+        NeatScroll/Gestures/FourFingersRightGesture.cpp
+        NeatScroll/Gestures/FourFingersLeftGesture.cpp
+        NeatScroll/Gestures/FourFingersDownGesture.cpp
+        NeatScroll/Actions/TaskViewOpenPerformer.cpp
+        NeatScroll/Actions/TaskViewClosePerformer.cpp
 )
 
 include_directories(NeatScroll/Include)

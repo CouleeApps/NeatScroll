@@ -4,10 +4,12 @@
 #include "SynapticsTouchpad.hpp"
 #include "MovementDetector.hpp"
 #include "GestureHandler.hpp"
-#include "FourFingersUpGesture.h"
-#include "FourFingersDownGesture.h"
-#include "FourFingersLeftGesture.h"
-#include "FourFingersRightGesture.h"
+#include "Gestures/FourFingersUpGesture.h"
+#include "Gestures/FourFingersDownGesture.h"
+#include "Gestures/FourFingersLeftGesture.h"
+#include "Gestures/FourFingersRightGesture.h"
+#include "Actions/TaskViewClosePerformer.h"
+#include "Actions/TaskViewOpenPerformer.h"
 #include <thread>
 
 int main(int argc, const char **argv) {
@@ -19,8 +21,8 @@ int main(int argc, const char **argv) {
 	touchpad.setHandler(&detector);
 	detector.setGestureHandler(&handler);
 
-	Gesture ffuGesture{ FourFingersUpGestureRecognizer(), FourFingersUpGesturePerformer() };
-	Gesture ffdGesture{ FourFingersDownGestureRecognizer(), FourFingersDownGesturePerformer() };
+	Gesture ffuGesture{ FourFingersUpGestureRecognizer(), TaskViewOpenPerformer() };
+	Gesture ffdGesture{ FourFingersDownGestureRecognizer(), TaskViewClosePerformer() };
 	Gesture fflGesture{ FourFingersLeftGestureRecognizer(), FourFingersLeftGesturePerformer() };
 	Gesture ffrGesture{ FourFingersRightGestureRecognizer(), FourFingersRightGesturePerformer() };
 	handler.addGesture(&ffuGesture);
