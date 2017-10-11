@@ -10,6 +10,8 @@
 #include "Gestures/FourFingersRightGesture.h"
 #include "Actions/TaskViewClosePerformer.h"
 #include "Actions/TaskViewOpenPerformer.h"
+#include "Actions/VirtualDesktopLeftPerformer.h"
+#include "Actions/VirtualDesktopRightPerformer.h"
 #include <thread>
 
 int main(int argc, const char **argv) {
@@ -23,8 +25,8 @@ int main(int argc, const char **argv) {
 
 	Gesture ffuGesture{ FourFingersUpGestureRecognizer(), TaskViewOpenPerformer() };
 	Gesture ffdGesture{ FourFingersDownGestureRecognizer(), TaskViewClosePerformer() };
-	Gesture fflGesture{ FourFingersLeftGestureRecognizer(), FourFingersLeftGesturePerformer() };
-	Gesture ffrGesture{ FourFingersRightGestureRecognizer(), FourFingersRightGesturePerformer() };
+	Gesture fflGesture{ FourFingersLeftGestureRecognizer(), VirtualDesktopLeftPerformer() };
+	Gesture ffrGesture{ FourFingersRightGestureRecognizer(), VirtualDesktopRightPerformer() };
 	handler.addGesture(&ffuGesture);
 	handler.addGesture(&ffdGesture);
 	handler.addGesture(&fflGesture);

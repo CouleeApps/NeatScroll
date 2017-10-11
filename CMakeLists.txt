@@ -19,6 +19,8 @@ set(SOURCE_FILES
         NeatScroll/Gestures/FourFingersDownGesture.cpp
         NeatScroll/Actions/TaskViewOpenPerformer.cpp
         NeatScroll/Actions/TaskViewClosePerformer.cpp
+        NeatScroll/Actions/VirtualDesktopLeftPerformer.cpp
+        NeatScroll/Actions/VirtualDesktopRightPerformer.cpp
 )
 
 include_directories(NeatScroll/Include)
