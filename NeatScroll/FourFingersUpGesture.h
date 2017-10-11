@@ -9,8 +9,8 @@ public:
 };
 
 class FourFingersUpGesturePerformer : public Gesture::Performer {
-	virtual void onGestureStart(const Movement &movement) override;
-	virtual void onGestureMove(const Movement &movement) override;
-	virtual void onGestureStop(const Movement &movement) override;
+	virtual bool onGestureStart(const Movement &movement) override;
+	virtual bool onGestureMove(const Movement &movement) override;
+	virtual bool onGestureStop(const Movement &movement) override;
 };
 

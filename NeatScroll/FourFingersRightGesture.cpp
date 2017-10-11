@@ -19,7 +19,7 @@ bool FourFingersRightGestureRecognizer::onMovementStop(const Movement &movement)
 	return onMovementMove(movement);
 }
 
-void FourFingersRightGesturePerformer::onGestureStart(const Movement &movement) {
+bool FourFingersRightGesturePerformer::onGestureStart(const Movement &movement) {
 	INPUT winDown = { 0 };
 	winDown.type = INPUT_KEYBOARD;
 	winDown.ki.wVk = VK_LWIN;
@@ -46,10 +46,13 @@ void FourFingersRightGesturePerformer::onGestureStart(const Movement &movement) 
 	winUp.ki.dwFlags = KEYEVENTF_KEYUP;
 	INPUT ups[3] = { rightUp, ctrlUp, winUp };
 	SendInput(3, ups, sizeof(INPUT));
+	return true;
 }
 
-void FourFingersRightGesturePerformer::onGestureMove(const Movement &movement) {
+bool FourFingersRightGesturePerformer::onGestureMove(const Movement &movement) {
+	return true;
 }
 
-void FourFingersRightGesturePerformer::onGestureStop(const Movement &movement) {
+bool FourFingersRightGesturePerformer::onGestureStop(const Movement &movement) {
+	return true;
 }

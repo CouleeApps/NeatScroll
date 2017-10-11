@@ -14,10 +14,9 @@ void GestureHandler::onMovementStart(const Movement &movement) {
 
 	//See if we get a gesture recognized
 	for (const auto &gesture : mGestures) {
-		if (gesture->onMovementStop(movement)) {
+		if (gesture->onMovementStart(movement) && gesture->onGestureStart(movement)) {
 			//Right at the start? That was quick
 			mActiveGesture = gesture;
-			gesture->onGestureStart(movement);
 			break;
 		}
 	}
@@ -27,10 +26,9 @@ void GestureHandler::onMovementMove(const Movement &movement) {
 	//See if we get a gesture recognized
 	if (mActiveGesture == nullptr) {
 		for (const auto &gesture : mGestures) {
-			if (gesture->onMovementStop(movement)) {
+			if (gesture->onMovementMove(movement) && gesture->onGestureStart(movement)) {
 				//That recognizer got something, use it
 				mActiveGesture = gesture;
-				gesture->onGestureStart(movement);
 				break;
 			}
 		}
@@ -46,10 +44,9 @@ void GestureHandler::onMovementStop(const Movement &movement) {
 	//See if we finally get a gesture recognized at the end
 	if (mActiveGesture == nullptr) {
 		for (const auto &gesture : mGestures) {
-			if (gesture->onMovementStop(movement)) {
+			if (gesture->onMovementStop(movement) && gesture->onGestureStart(movement)) {
 				//That recognizer got something, use it
 				mActiveGesture = gesture;
-				gesture->onGestureStart(movement);
 				break;
 			}
 		}

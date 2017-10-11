@@ -16,9 +16,6 @@ bool FourFingersDownGestureRecognizer::onMovementMove(const Movement &movement) 
 	if (movement.getAverageRelativeDelta().y > -0.2f) {
 		return false;
 	}
-	if (!TaskViewDetector::isTaskView()) {
-		return false;
-	}
 	return true;
 }
 
@@ -26,7 +23,10 @@ bool FourFingersDownGestureRecognizer::onMovementStop(const Movement &movement) 
 	return onMovementMove(movement);
 }
 
-void FourFingersDownGesturePerformer::onGestureStart(const Movement &movement) {
+bool FourFingersDownGesturePerformer::onGestureStart(const Movement &movement) {
+	if (!TaskViewDetector::isTaskView()) {
+		return false;
+	}
 	INPUT winDown = { 0 };
 	winDown.type = INPUT_KEYBOARD;
 	winDown.ki.wVk = VK_LWIN;
@@ -46,10 +46,13 @@ void FourFingersDownGesturePerformer::onGestureStart(const Movement &movement) {
 	winUp.ki.dwFlags = KEYEVENTF_KEYUP;
 	INPUT ups[2] = { tabUp, winUp };
 	SendInput(2, ups, sizeof(INPUT));
+	return true;
 }
 
-void FourFingersDownGesturePerformer::onGestureMove(const Movement &movement) {
+bool FourFingersDownGesturePerformer::onGestureMove(const Movement &movement) {
+	return true;
 }
 
-void FourFingersDownGesturePerformer::onGestureStop(const Movement &movement) {
+bool FourFingersDownGesturePerformer::onGestureStop(const Movement &movement) {
+	return true;
 }
