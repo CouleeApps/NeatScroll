@@ -7,15 +7,19 @@
 bool foundShell = false;
 
 BOOL CALLBACK EnumChildProc(HWND hWnd, LPARAM lParam) {
-	TCHAR *buffer = new TCHAR[1024];
+	TCHAR buffer[1024];
 	memset(buffer, 0, 1024 * sizeof(TCHAR));
 	int wClass = GetClassName(hWnd, buffer, 1024);
+#ifdef UNICODE
 	std::wstring windowClass = std::wstring(buffer);
-	delete[] buffer;
+	foundShell = (windowClass == L"Shell_TrayWnd");
+#else
+	std::string windowClass = std::string(buffer);
+	foundShell = (windowClass == "Shell_TrayWnd");
+#endif
 
 	//This window only exists as a child window when the Task View is closed
-	if (windowClass == L"Shell_TrayWnd") {
-		foundShell = true;
+	if (foundShell) {
 		return FALSE;
 	}
 	return TRUE;
