@@ -9,7 +9,6 @@ public:
 	~Movement();
 
 	int mPointCount;
-	bool mMetThreshold;
 	std::vector<Touchpad::TouchPoint> mPoints;
 	std::vector<Touchpad::TouchPoint> mStartPoints;
 

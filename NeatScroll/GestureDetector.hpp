@@ -19,8 +19,9 @@ public:
 	virtual void update(const std::vector<Touchpad::TouchPoint> &points) override;
 private:
 	Touchpad &mTouchpad;
-	Movement mGesture;
+	Movement mMovement;
 	bool mGestureActive;
+	bool mMetThreshold;
 	float mGestureThreshold;
 	GestureUpdateHandler *mHandler;
 
