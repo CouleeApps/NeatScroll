@@ -12,11 +12,11 @@ public:
 
 class MovementDetector : public TouchpadUpdateHandler {
 public:
-	MovementDetector(Touchpad &touchpad);
+	explicit MovementDetector(Touchpad &touchpad);
 	~MovementDetector();
 
 	void setGestureHandler(GestureDetector *handler) { mHandler = handler; }
-	virtual void update(const std::vector<Touchpad::TouchPoint> &points) override;
+	void update(const std::vector<Touchpad::TouchPoint> &points) override;
 private:
 	Touchpad &mTouchpad;
 	Movement mMovement;

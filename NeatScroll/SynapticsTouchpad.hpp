@@ -5,37 +5,37 @@
 class SynapticsTouchpad : public Touchpad {
 public:
 	SynapticsTouchpad();
-	virtual ~SynapticsTouchpad();
+	~SynapticsTouchpad() override;
 
 	/**
 	* Connect to the touchpad device
 	* @return If it was successful
 	*/
-	virtual bool connect() override;
+	bool connect() override;
 
 	/**
 	* Acquire control over the touchpad
 	* @param exclusive If the control should disable default functionality
 	* @return If it was successful
 	*/
-	virtual bool acquire(bool exclusive) const override;
+	bool acquire(bool exclusive) const override;
 
 	/**
 	* Disconnect from the device and free resources
 	* @return If it was successful
 	*/
-	virtual bool disconnect() override;
+	bool disconnect() override;
 
 	/**
 	* Poll device, any updates in touches will be fired off to the callback function
 	* @return If it was successful
 	*/
-	virtual bool poll() override;
+	bool poll() override;
 
-	virtual bool postMouseMove(int dx, int dy, Buttons buttons) override;
-	virtual bool postMouseScroll(int dx, int dy, Buttons buttons) override;
-	virtual bool postMouseDown(Buttons buttons) override;
-	virtual bool postMouseUp(Buttons buttons) override;
+	bool postMouseMove(int dx, int dy, Buttons buttons) override;
+	bool postMouseScroll(int dx, int dy, Buttons buttons) override;
+	bool postMouseDown(Buttons buttons) override;
+	bool postMouseUp(Buttons buttons) override;
 
 private:
 	HANDLE mEvent;
