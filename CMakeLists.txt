@@ -11,7 +11,7 @@ set(SOURCE_FILES
         NeatScroll/NeatScroll.cpp
         NeatScroll/Movement.cpp
         NeatScroll/GestureHandler.cpp
-        NeatScroll/GestureDetector.cpp
+        NeatScroll/MovementDetector.cpp
         NeatScroll/Gesture.cpp
         NeatScroll/FourFingersUpGesture.cpp
         NeatScroll/FourFingersRightGesture.cpp

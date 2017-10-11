@@ -159,7 +159,7 @@
     <ClInclude Include="FourFingersUpGesture.h" />
     <ClInclude Include="Gesture.hpp" />
     <ClInclude Include="Movement.h" />
-    <ClInclude Include="GestureDetector.hpp" />
+    <ClInclude Include="MovementDetector.hpp" />
     <ClInclude Include="GestureHandler.hpp" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="SynapticsTouchpad.hpp" />
@@ -174,7 +174,7 @@
     <ClCompile Include="FourFingersUpGesture.cpp" />
     <ClCompile Include="Gesture.cpp" />
     <ClCompile Include="Movement.cpp" />
-    <ClCompile Include="GestureDetector.cpp" />
+    <ClCompile Include="MovementDetector.cpp" />
     <ClCompile Include="GestureHandler.cpp" />
     <ClCompile Include="NeatScroll.cpp" />
     <ClCompile Include="stdafx.cpp">

@@ -3,19 +3,19 @@
 #include <unordered_map>
 #include "Movement.h"
 
-class GestureUpdateHandler {
+class GestureDetector {
 public:
 	virtual void onMovementStart(const Movement &movement) = 0;
 	virtual void onMovementMove(const Movement &movement) = 0;
 	virtual void onMovementStop(const Movement &movement) = 0;
 };
 
-class GestureDetector : public TouchpadUpdateHandler {
+class MovementDetector : public TouchpadUpdateHandler {
 public:
-	GestureDetector(Touchpad &touchpad);
-	~GestureDetector();
+	MovementDetector(Touchpad &touchpad);
+	~MovementDetector();
 
-	void setGestureHandler(GestureUpdateHandler *handler) { mHandler = handler; }
+	void setGestureHandler(GestureDetector *handler) { mHandler = handler; }
 	virtual void update(const std::vector<Touchpad::TouchPoint> &points) override;
 private:
 	Touchpad &mTouchpad;
@@ -23,7 +23,7 @@ private:
 	bool mGestureActive;
 	bool mMetThreshold;
 	float mGestureThreshold;
-	GestureUpdateHandler *mHandler;
+	GestureDetector *mHandler;
 
 	void touchStart(const std::vector<Touchpad::TouchPoint> &points);
 	void touchStop(const std::vector<Touchpad::TouchPoint> &points);

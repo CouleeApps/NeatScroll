@@ -33,7 +33,7 @@
     <ClInclude Include="SynapticsTouchpad.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="GestureDetector.hpp">
+    <ClInclude Include="MovementDetector.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="GestureHandler.hpp">
@@ -71,7 +71,7 @@
     <ClCompile Include="SynapticsTouchpad.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="GestureDetector.cpp">
+    <ClCompile Include="MovementDetector.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="GestureHandler.cpp">

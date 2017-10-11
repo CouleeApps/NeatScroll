@@ -2,7 +2,7 @@
 #include <functional>
 #include "Touchpad.hpp"
 #include "SynapticsTouchpad.hpp"
-#include "GestureDetector.hpp"
+#include "MovementDetector.hpp"
 #include "GestureHandler.hpp"
 #include "FourFingersUpGesture.h"
 #include "FourFingersDownGesture.h"
@@ -14,7 +14,7 @@ int main(int argc, const char **argv) {
 	using namespace std::placeholders;
 
 	SynapticsTouchpad touchpad;
-	GestureDetector detector(touchpad);
+	MovementDetector detector(touchpad);
 	GestureHandler handler;
 	touchpad.setHandler(&detector);
 	detector.setGestureHandler(&handler);

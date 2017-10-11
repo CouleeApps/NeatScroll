@@ -1,8 +1,8 @@
 #pragma once
-#include "GestureDetector.hpp"
+#include "MovementDetector.hpp"
 #include "Gesture.hpp"
 
-class GestureHandler : public GestureUpdateHandler {
+class GestureHandler : public GestureDetector {
 public:
 	GestureHandler();
 	~GestureHandler();
