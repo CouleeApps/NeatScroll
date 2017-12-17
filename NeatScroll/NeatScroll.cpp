@@ -4,14 +4,11 @@
 #include "SynapticsTouchpad.hpp"
 #include "MovementDetector.hpp"
 #include "GestureHandler.hpp"
-#include "Gestures/FourFingersUpGesture.h"
-#include "Gestures/FourFingersDownGesture.h"
-#include "Gestures/FourFingersLeftGesture.h"
-#include "Gestures/FourFingersRightGesture.h"
 #include "Actions/TaskViewClosePerformer.h"
 #include "Actions/TaskViewOpenPerformer.h"
 #include "Actions/VirtualDesktopLeftPerformer.h"
 #include "Actions/VirtualDesktopRightPerformer.h"
+#include "Gestures/SwipeGestureRecognizer.h"
 #include <thread>
 
 int main(int argc, const char **argv) {
@@ -23,10 +20,10 @@ int main(int argc, const char **argv) {
 	touchpad.setHandler(&detector);
 	detector.setGestureHandler(&handler);
 
-	Gesture ffuGesture{ FourFingersUpGestureRecognizer(), TaskViewOpenPerformer() };
-	Gesture ffdGesture{ FourFingersDownGestureRecognizer(), TaskViewClosePerformer() };
-	Gesture fflGesture{ FourFingersLeftGestureRecognizer(), VirtualDesktopLeftPerformer() };
-	Gesture ffrGesture{ FourFingersRightGestureRecognizer(), VirtualDesktopRightPerformer() };
+	Gesture ffuGesture{ SwipeGestureRecognizer<Up, 4>(0.2f), TaskViewOpenPerformer() };
+	Gesture ffdGesture{ SwipeGestureRecognizer<Down, 4>(0.2f), TaskViewClosePerformer() };
+	Gesture fflGesture{ SwipeGestureRecognizer<Left, 4>(0.2f), VirtualDesktopLeftPerformer() };
+	Gesture ffrGesture{ SwipeGestureRecognizer<Right, 4>(0.2f), VirtualDesktopRightPerformer() };
 	handler.addGesture(&ffuGesture);
 	handler.addGesture(&ffdGesture);
 	handler.addGesture(&fflGesture);
@@ -39,7 +36,7 @@ int main(int argc, const char **argv) {
 
 	//To disable the system using this, uncomment this line.
 	// Just make sure you have a mouse nearby in case the program crashes
-	//touchpad.acquire(true);
+	touchpad.acquire(true);
 
 	while (true) {
 		if (!touchpad.poll()) {
