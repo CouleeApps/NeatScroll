@@ -19,7 +19,7 @@ set(SOURCE_FILES
         NeatScroll/Actions/CombiningPerformer.cpp
         NeatScroll/Actions/KeyPressPerformer.cpp
         NeatScroll/Actions/KeyPressPerformer.h
-)
+        NeatScroll/Gestures/SwipeGestureRecognizer.cpp)
 
 source_group("Actions" REGULAR_EXPRESSION Actions/.*)
 source_group("Gestures" REGULAR_EXPRESSION Gestures/.*)

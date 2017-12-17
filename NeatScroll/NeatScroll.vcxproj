@@ -171,6 +171,7 @@
     <ClCompile Include="Actions\CombiningPerformer.cpp" />
     <ClCompile Include="Actions\KeyPressPerformer.cpp" />
     <ClCompile Include="Gesture.cpp" />
+    <ClCompile Include="Gestures\SwipeGestureRecognizer.cpp" />
     <ClCompile Include="Movement.cpp" />
     <ClCompile Include="MovementDetector.cpp" />
     <ClCompile Include="GestureHandler.cpp" />

@@ -92,5 +92,8 @@
     <ClCompile Include="Actions\KeyPressPerformer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Gestures\SwipeGestureRecognizer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

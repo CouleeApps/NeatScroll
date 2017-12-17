@@ -25,10 +25,10 @@ int main(int argc, const char **argv) {
 	detector.setGestureHandler(&handler);
 	
 	//Gesture recognizers
-	auto up3Rec = SwipeGestureRecognizer<Up, 3>(0.2f);
-	auto down3Rec = SwipeGestureRecognizer<Down, 3>(0.2f);
-	auto left3Rec = SwipeGestureRecognizer<Left, 3>(0.2f);
-	auto right3Rec = SwipeGestureRecognizer<Right, 3>(0.2f);
+	auto up3Rec = SwipeGestureRecognizer(SwipeGestureRecognizer::Up, 3, 0.2f);
+	auto down3Rec = SwipeGestureRecognizer(SwipeGestureRecognizer::Down, 3, 0.2f);
+	auto left3Rec = SwipeGestureRecognizer(SwipeGestureRecognizer::Left, 3, 0.2f);
+	auto right3Rec = SwipeGestureRecognizer(SwipeGestureRecognizer::Right, 3, 0.2f);
 	//Gesture performers
 	auto winTabPerf = KeyPressPerformer({ VK_LWIN, VK_TAB });
 	auto openTaskViewPerf = ConditionalPerformer{ winTabPerf, []() { return !TaskViewDetector::isTaskView(); } };
