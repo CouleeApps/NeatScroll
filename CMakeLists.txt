@@ -13,15 +13,16 @@ set(SOURCE_FILES
         NeatScroll/GestureHandler.cpp
         NeatScroll/MovementDetector.cpp
         NeatScroll/Gesture.cpp
-        NeatScroll/Gestures/FourFingersUpGesture.cpp
-        NeatScroll/Gestures/FourFingersRightGesture.cpp
-        NeatScroll/Gestures/FourFingersLeftGesture.cpp
-        NeatScroll/Gestures/FourFingersDownGesture.cpp
-        NeatScroll/Actions/TaskViewOpenPerformer.cpp
-        NeatScroll/Actions/TaskViewClosePerformer.cpp
-        NeatScroll/Actions/VirtualDesktopLeftPerformer.cpp
-        NeatScroll/Actions/VirtualDesktopRightPerformer.cpp
+        NeatScroll/Gestures/SwipeGestureRecognizer.h
+        NeatScroll/Actions/ConditionalPerformer.h
+        NeatScroll/Actions/CombiningPerformer.h
+        NeatScroll/Actions/CombiningPerformer.cpp
+        NeatScroll/Actions/KeyPressPerformer.cpp
+        NeatScroll/Actions/KeyPressPerformer.h
 )
+
+source_group("Actions" REGULAR_EXPRESSION Actions/.*)
+source_group("Gestures" REGULAR_EXPRESSION Gestures/.*)
 
 include_directories(NeatScroll/Include)
 include_directories(NeatScroll) # stdafx

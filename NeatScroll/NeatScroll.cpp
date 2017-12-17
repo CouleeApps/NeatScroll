@@ -4,12 +4,16 @@
 #include "SynapticsTouchpad.hpp"
 #include "MovementDetector.hpp"
 #include "GestureHandler.hpp"
-#include "Actions/TaskViewClosePerformer.h"
-#include "Actions/TaskViewOpenPerformer.h"
-#include "Actions/VirtualDesktopLeftPerformer.h"
-#include "Actions/VirtualDesktopRightPerformer.h"
+#include "Actions/ConditionalPerformer.h"
 #include "Gestures/SwipeGestureRecognizer.h"
+#include "TaskViewDetector.h"
 #include <thread>
+#include <Windows.h>
+#include "Actions/KeyPressPerformer.h"
+
+bool isNotTaskView() {
+	return !TaskViewDetector::isTaskView();
+}
 
 int main(int argc, const char **argv) {
 	using namespace std::placeholders;
@@ -19,11 +23,23 @@ int main(int argc, const char **argv) {
 	GestureHandler handler;
 	touchpad.setHandler(&detector);
 	detector.setGestureHandler(&handler);
-
-	Gesture ffuGesture{ SwipeGestureRecognizer<Up, 4>(0.2f), TaskViewOpenPerformer() };
-	Gesture ffdGesture{ SwipeGestureRecognizer<Down, 4>(0.2f), TaskViewClosePerformer() };
-	Gesture fflGesture{ SwipeGestureRecognizer<Left, 4>(0.2f), VirtualDesktopLeftPerformer() };
-	Gesture ffrGesture{ SwipeGestureRecognizer<Right, 4>(0.2f), VirtualDesktopRightPerformer() };
+	
+	//Gesture recognizers
+	auto up3Rec = SwipeGestureRecognizer<Up, 3>(0.2f);
+	auto down3Rec = SwipeGestureRecognizer<Down, 3>(0.2f);
+	auto left3Rec = SwipeGestureRecognizer<Left, 3>(0.2f);
+	auto right3Rec = SwipeGestureRecognizer<Right, 3>(0.2f);
+	//Gesture performers
+	auto winTabPerf = KeyPressPerformer({ VK_LWIN, VK_TAB });
+	auto openTaskViewPerf = ConditionalPerformer{ winTabPerf, []() { return !TaskViewDetector::isTaskView(); } };
+	auto closeTaskViewPerf = ConditionalPerformer{ winTabPerf, TaskViewDetector::isTaskView };
+	auto vDeskLeftPerf = KeyPressPerformer({ VK_LWIN, VK_LCONTROL, VK_LEFT });
+	auto vDeskRightPerf = KeyPressPerformer({ VK_LWIN, VK_LCONTROL, VK_RIGHT });
+	//Construct and add the actual gestures
+	Gesture ffuGesture{ up3Rec, openTaskViewPerf };
+	Gesture ffdGesture{ down3Rec, closeTaskViewPerf };
+	Gesture fflGesture{ left3Rec, vDeskLeftPerf };
+	Gesture ffrGesture{ right3Rec, vDeskRightPerf };
 	handler.addGesture(&ffuGesture);
 	handler.addGesture(&ffdGesture);
 	handler.addGesture(&fflGesture);

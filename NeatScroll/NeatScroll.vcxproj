@@ -152,12 +152,12 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Actions\CombiningPerformer.h" />
+    <ClInclude Include="Actions\ConditionalPerformer.h" />
+    <ClInclude Include="Actions\KeyPressPerformer.h" />
     <ClInclude Include="bezier.h" />
-    <ClInclude Include="FourFingersDownGesture.h" />
-    <ClInclude Include="FourFingersLeftGesture.h" />
-    <ClInclude Include="FourFingersRightGesture.h" />
-    <ClInclude Include="FourFingersUpGesture.h" />
     <ClInclude Include="Gesture.hpp" />
+    <ClInclude Include="Gestures\SwipeGestureRecognizer.h" />
     <ClInclude Include="Movement.h" />
     <ClInclude Include="MovementDetector.hpp" />
     <ClInclude Include="GestureHandler.hpp" />
@@ -168,10 +168,8 @@
     <ClInclude Include="TaskViewDetector.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="FourFingersDownGesture.cpp" />
-    <ClCompile Include="FourFingersLeftGesture.cpp" />
-    <ClCompile Include="FourFingersRightGesture.cpp" />
-    <ClCompile Include="FourFingersUpGesture.cpp" />
+    <ClCompile Include="Actions\CombiningPerformer.cpp" />
+    <ClCompile Include="Actions\KeyPressPerformer.cpp" />
     <ClCompile Include="Gesture.cpp" />
     <ClCompile Include="Movement.cpp" />
     <ClCompile Include="MovementDetector.cpp" />

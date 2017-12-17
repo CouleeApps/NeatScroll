@@ -5,7 +5,7 @@
 #ifndef NEATSCROLL_SWIPEGESTURE_H
 #define NEATSCROLL_SWIPEGESTURE_H
 
-#include <Gesture.hpp>
+#include "../Gesture.hpp"
 
 enum SwipeDirection {
 	Up,
