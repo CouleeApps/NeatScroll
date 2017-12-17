@@ -1,4 +1,4 @@
-#include "../stdafx.h"
+#include "stdafx.h"
 #include "TaskViewOpenPerformer.h"
 #include "../TaskViewDetector.h"
 #include <Windows.h>

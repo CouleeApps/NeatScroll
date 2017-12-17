@@ -24,6 +24,7 @@ set(SOURCE_FILES
 )
 
 include_directories(NeatScroll/Include)
+include_directories(NeatScroll) # stdafx
 link_directories(NeatScroll/Lib/x64)
 
 add_executable(NeatScroll ${SOURCE_FILES})

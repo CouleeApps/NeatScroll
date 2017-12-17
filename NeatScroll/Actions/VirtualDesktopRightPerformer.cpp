@@ -1,4 +1,4 @@
-#include "../stdafx.h"
+#include "stdafx.h"
 #include "VirtualDesktopRightPerformer.h"
 #include <Windows.h>
 

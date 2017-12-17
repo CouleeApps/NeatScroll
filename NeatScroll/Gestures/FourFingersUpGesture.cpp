@@ -1,4 +1,4 @@
-#include "../stdafx.h"
+#include "stdafx.h"
 #include "FourFingersUpGesture.h"
 
 bool FourFingersUpGestureRecognizer::onMovementStart(const Movement &movement) {
