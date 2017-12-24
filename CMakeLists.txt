@@ -7,7 +7,6 @@ set(CMAKE_CXX_STANDARD 14)
 set(SOURCE_FILES
         NeatScroll/SynapticsTouchpad.cpp
         NeatScroll/stdafx.cpp
-        NeatScroll/TaskViewDetector.cpp
         NeatScroll/NeatScroll.cpp
         NeatScroll/Movement.cpp
         NeatScroll/GestureHandler.cpp
@@ -19,7 +18,12 @@ set(SOURCE_FILES
         NeatScroll/Actions/CombiningPerformer.cpp
         NeatScroll/Actions/KeyPressPerformer.cpp
         NeatScroll/Actions/KeyPressPerformer.h
-        NeatScroll/Gestures/SwipeGestureRecognizer.cpp)
+        NeatScroll/Gestures/SwipeGestureRecognizer.cpp
+        NeatScroll/ProcessDetector.cpp
+        NeatScroll/ProcessDetector.h
+        NeatScroll/WindowDetector.cpp
+        NeatScroll/WindowDetector.h
+)
 
 source_group("Actions" REGULAR_EXPRESSION Actions/.*)
 source_group("Gestures" REGULAR_EXPRESSION Gestures/.*)
@@ -30,3 +34,5 @@ link_directories(NeatScroll/Lib/x64)
 
 add_executable(NeatScroll ${SOURCE_FILES})
 target_link_libraries(NeatScroll SynCom)
+
+target_compile_definitions(NeatScroll PRIVATE UNICODE _UNICODE)

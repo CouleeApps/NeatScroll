@@ -5,15 +5,11 @@
 #include "MovementDetector.hpp"
 #include "GestureHandler.hpp"
 #include "Actions/ConditionalPerformer.h"
-#include "Gestures/SwipeGestureRecognizer.h"
-#include "TaskViewDetector.h"
-#include <thread>
-#include <Windows.h>
 #include "Actions/KeyPressPerformer.h"
-
-bool isNotTaskView() {
-	return !TaskViewDetector::isTaskView();
-}
+#include "Gestures/SwipeGestureRecognizer.h"
+#include "ProcessDetector.h"
+#include "WindowDetector.h"
+#include <thread>
 
 int main(int argc, const char **argv) {
 	using namespace std::placeholders;
@@ -29,12 +25,20 @@ int main(int argc, const char **argv) {
 	auto down3Rec = SwipeGestureRecognizer(SwipeGestureRecognizer::Down, 3, 0.2f);
 	auto left3Rec = SwipeGestureRecognizer(SwipeGestureRecognizer::Left, 3, 0.2f);
 	auto right3Rec = SwipeGestureRecognizer(SwipeGestureRecognizer::Right, 3, 0.2f);
+	//Detect task view by its active window in the foreground
+	auto taskViewProcessDetector = ProcessDetector("explorer.exe");
+	auto taskViewWindowDetector = WindowDetector("Task View");
+	auto isTaskView = [&]() {
+		return taskViewProcessDetector.isProcessDetected() && taskViewWindowDetector.isWindowDetected();
+	};
+
 	//Gesture performers
 	auto winTabPerf = KeyPressPerformer({ VK_LWIN, VK_TAB });
-	auto openTaskViewPerf = ConditionalPerformer{ winTabPerf, []() { return !TaskViewDetector::isTaskView(); } };
-	auto closeTaskViewPerf = ConditionalPerformer{ winTabPerf, TaskViewDetector::isTaskView };
+	auto openTaskViewPerf = ConditionalPerformer{ winTabPerf, [&isTaskView]() { return !isTaskView(); } };
+	auto closeTaskViewPerf = ConditionalPerformer{ winTabPerf, isTaskView };
 	auto vDeskLeftPerf = KeyPressPerformer({ VK_LWIN, VK_LCONTROL, VK_LEFT });
 	auto vDeskRightPerf = KeyPressPerformer({ VK_LWIN, VK_LCONTROL, VK_RIGHT });
+
 	//Construct and add the actual gestures
 	Gesture ffuGesture{ up3Rec, openTaskViewPerf };
 	Gesture ffdGesture{ down3Rec, closeTaskViewPerf };
