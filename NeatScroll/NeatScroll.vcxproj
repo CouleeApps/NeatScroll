@@ -158,24 +158,29 @@
     <ClInclude Include="bezier.h" />
     <ClInclude Include="Gesture.hpp" />
     <ClInclude Include="Gestures\SwipeGestureRecognizer.h" />
+    <ClInclude Include="HighPerformanceTimer.h" />
     <ClInclude Include="Movement.h" />
     <ClInclude Include="MovementDetector.hpp" />
     <ClInclude Include="GestureHandler.hpp" />
+    <ClInclude Include="ProcessDetector.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="SynapticsTouchpad.hpp" />
     <ClInclude Include="targetver.h" />
+    <ClInclude Include="Timer.h" />
     <ClInclude Include="Touchpad.hpp" />
-    <ClInclude Include="TaskViewDetector.h" />
+    <ClInclude Include="WindowDetector.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Actions\CombiningPerformer.cpp" />
     <ClCompile Include="Actions\KeyPressPerformer.cpp" />
     <ClCompile Include="Gesture.cpp" />
     <ClCompile Include="Gestures\SwipeGestureRecognizer.cpp" />
+    <ClCompile Include="HighPerformanceTimer.cpp" />
     <ClCompile Include="Movement.cpp" />
     <ClCompile Include="MovementDetector.cpp" />
     <ClCompile Include="GestureHandler.cpp" />
     <ClCompile Include="NeatScroll.cpp" />
+    <ClCompile Include="ProcessDetector.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
@@ -183,7 +188,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="SynapticsTouchpad.cpp" />
-    <ClCompile Include="TaskViewDetector.cpp" />
+    <ClCompile Include="WindowDetector.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

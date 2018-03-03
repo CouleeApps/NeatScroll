@@ -21,6 +21,9 @@ set(SOURCE_FILES
         NeatScroll/Gestures/SwipeGestureRecognizer.cpp
         NeatScroll/ProcessDetector.cpp
         NeatScroll/ProcessDetector.h
+        NeatScroll/Timer.h
+        NeatScroll/HighPerformanceTimer.cpp
+        NeatScroll/HighPerformanceTimer.h
         NeatScroll/WindowDetector.cpp
         NeatScroll/WindowDetector.h
 )
@@ -29,7 +32,7 @@ source_group("Actions" REGULAR_EXPRESSION Actions/.*)
 source_group("Gestures" REGULAR_EXPRESSION Gestures/.*)
 
 include_directories(NeatScroll/Include)
-include_directories(NeatScroll) # stdafx
+include_directories(${CMAKE_CURRENT_SOURCE_DIR})
 link_directories(NeatScroll/Lib/x64)
 
 add_executable(NeatScroll ${SOURCE_FILES})
