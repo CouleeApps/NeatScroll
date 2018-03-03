@@ -56,7 +56,6 @@ bool SynapticsTouchpad::connect() {
 
 bool SynapticsTouchpad::acquire(bool exclusive) const {
 	OK_OR_FALSE(mDevice->Acquire(exclusive ? SE_AcquireExclusive : SE_AcquirePassive));
-
 	return true;
 }
 
@@ -75,6 +74,8 @@ bool SynapticsTouchpad::disconnect() {
 bool SynapticsTouchpad::poll() {
 	//Check for new events
 	OR_FALSE(WaitForSingleObject(mEvent, 0) != WAIT_FAILED);
+
+	acquire(false);
 
 	//Poll the events until we can't
 	while (mDevice->LoadGroup(mGroup) != SYNE_FAIL && mGroup) {
@@ -176,4 +177,14 @@ long SynapticsTouchpad::buttonsToButtonState(Touchpad::Buttons buttons) {
 	if (buttons.Button4) buttonState |= SF_Button4;
 	if (buttons.Button5) buttonState |= SF_Button5;
 	return buttonState;
+}
+
+bool SynapticsTouchpad::setProperty(SynDeviceProperty property, long value) {
+	OK_OR_FALSE(mDevice->SetProperty(property, value));
+	return true;
+}
+
+bool SynapticsTouchpad::getProperty(SynDeviceProperty property, long *value) {
+	OK_OR_FALSE(mDevice->GetProperty(property, value));
+	return true;
 }

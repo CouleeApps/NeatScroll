@@ -1,15 +1,15 @@
-#include "stdafx.h"
+#include <stdafx.h>
 #include <functional>
-#include "Touchpad.hpp"
-#include "SynapticsTouchpad.hpp"
-#include "MovementDetector.hpp"
-#include "GestureHandler.hpp"
-#include "Actions/ConditionalPerformer.h"
-#include "Actions/KeyPressPerformer.h"
-#include "Gestures/SwipeGestureRecognizer.h"
-#include "ProcessDetector.h"
-#include "WindowDetector.h"
-#include "HighPerformanceTimer.h"
+#include <Touchpad.hpp>
+#include <SynapticsTouchpad.hpp>
+#include <MovementDetector.hpp>
+#include <GestureHandler.hpp>
+#include <Actions/ConditionalPerformer.h>
+#include <Actions/KeyPressPerformer.h>
+#include <Gestures/SwipeGestureRecognizer.h>
+#include <ProcessDetector.h>
+#include <WindowDetector.h>
+#include <HighPerformanceTimer.h>
 #include <thread>
 
 int main(int argc, const char **argv) {
@@ -87,6 +87,13 @@ int main(int argc, const char **argv) {
 		if (!touchpad.poll()) {
 			break;
 		}
+
+		long palm;
+		if (touchpad.getProperty(SP_PalmThreshold, &palm) && palm != 0) {
+			touchpad.setProperty(SP_PalmThreshold, 0);
+			printf("Disabling palm detection\n");
+		}
+
 		//Performance
 		std::this_thread::sleep_for(std::chrono::microseconds(1));
 	}

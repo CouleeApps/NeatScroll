@@ -37,6 +37,9 @@ public:
 	bool postMouseDown(Buttons buttons) override;
 	bool postMouseUp(Buttons buttons) override;
 
+	bool setProperty(SynDeviceProperty property, long value);
+	bool getProperty(SynDeviceProperty property, long *value);
+
 private:
 	HANDLE mEvent;
 	long mMaxFingers;
