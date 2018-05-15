@@ -2,10 +2,10 @@
 // Created by glennsmith on 12/17/2017.
 //
 
-#ifndef NEATSCROLL_SWIPEGESTURE_H
-#define NEATSCROLL_SWIPEGESTURE_H
+#ifndef NEATSCROLL_SWIPEGESTURE_HPP
+#define NEATSCROLL_SWIPEGESTURE_HPP
 
-#include "../Timer.h"
+#include "../Timer.hpp"
 #include <vector>
 #include "../Gesture.hpp"
 
@@ -37,4 +37,4 @@ public:
 	bool onMovementStop(const Movement &movement) override;
 };
 
-#endif //NEATSCROLL_SWIPEGESTURE_H
+#endif //NEATSCROLL_SWIPEGESTURE_HPP

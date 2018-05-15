@@ -6,42 +6,42 @@ set(CMAKE_CXX_STANDARD 14)
 
 set(SOURCE_FILES
         # Abstract interfaces
-        NeatScroll/Timer.h
+        NeatScroll/Timer.hpp
         NeatScroll/Touchpad.hpp
 
         # Logic and data control
         NeatScroll/Gesture.cpp
         NeatScroll/Gesture.hpp
         NeatScroll/Movement.cpp
-        NeatScroll/Movement.h
+        NeatScroll/Movement.hpp
         NeatScroll/GestureHandler.cpp
         NeatScroll/GestureHandler.hpp
         NeatScroll/MovementDetector.cpp
         NeatScroll/MovementDetector.hpp
         
         # Extra math utils
-        NeatScroll/bezier.h
+        NeatScroll/Bezier.hpp
 
         # Actions
         NeatScroll/Actions/CombiningPerformer.cpp
-        NeatScroll/Actions/CombiningPerformer.h
-        NeatScroll/Actions/ConditionalPerformer.h
+        NeatScroll/Actions/CombiningPerformer.hpp
+        NeatScroll/Actions/ConditionalPerformer.hpp
         NeatScroll/Actions/KeyPressPerformer.cpp
-        NeatScroll/Actions/KeyPressPerformer.h
+        NeatScroll/Actions/KeyPressPerformer.hpp
 
         # Gestures
         NeatScroll/Gestures/SwipeGestureRecognizer.cpp
-        NeatScroll/Gestures/SwipeGestureRecognizer.h
+        NeatScroll/Gestures/SwipeGestureRecognizer.hpp
 
         # Windows-specific classes
         NeatScroll/HighPerformanceTimer.cpp
-        NeatScroll/HighPerformanceTimer.h
+        NeatScroll/HighPerformanceTimer.hpp
         NeatScroll/ProcessDetector.cpp
-        NeatScroll/ProcessDetector.h
+        NeatScroll/ProcessDetector.hpp
         NeatScroll/SynapticsTouchpad.cpp
         NeatScroll/SynapticsTouchpad.hpp
         NeatScroll/WindowDetector.cpp
-        NeatScroll/WindowDetector.h
+        NeatScroll/WindowDetector.hpp
 
         # Dirty Windows files!
         NeatScroll/stdafx.cpp

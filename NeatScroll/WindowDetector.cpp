@@ -3,7 +3,7 @@
 //
 
 #include "stdafx.h"
-#include "WindowDetector.h"
+#include "WindowDetector.hpp"
 #include <Windows.h>
 
 #if UNICODE

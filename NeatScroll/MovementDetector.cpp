@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "MovementDetector.hpp"
-#include "bezier.h"
+#include "Bezier.hpp"
 
 MovementDetector::MovementDetector(Touchpad &touchpad) : mTouchpad(touchpad) {
 	mGestureActive = false;

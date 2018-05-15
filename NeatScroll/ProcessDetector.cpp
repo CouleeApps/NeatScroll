@@ -3,7 +3,7 @@
 //
 
 #include "stdafx.h"
-#include "ProcessDetector.h"
+#include "ProcessDetector.hpp"
 #include <Windows.h>
 #include <Psapi.h>
 

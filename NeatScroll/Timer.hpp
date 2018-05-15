@@ -2,8 +2,8 @@
 // Created by glennsmith on 12/23/2017.
 //
 
-#ifndef NEATSCROLL_TIMER_H
-#define NEATSCROLL_TIMER_H
+#ifndef NEATSCROLL_TIMER_HPP
+#define NEATSCROLL_TIMER_HPP
 
 #include <stdint.h>
 
@@ -17,4 +17,4 @@ public:
 };
 
 
-#endif //NEATSCROLL_TIMER_H
+#endif //NEATSCROLL_TIMER_HPP

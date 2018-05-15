@@ -1,7 +1,7 @@
 #pragma once
 #include "Touchpad.hpp"
 #include <unordered_map>
-#include "Movement.h"
+#include "Movement.hpp"
 
 class GestureDetector {
 public:

@@ -3,7 +3,7 @@
 //
 
 #include "stdafx.h"
-#include "CombiningPerformer.h"
+#include "CombiningPerformer.hpp"
 
 bool CombiningPerformer::onGestureStart(const Movement &movement) {
 	for (auto performer : mPerformers) {

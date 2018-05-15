@@ -2,10 +2,10 @@
 // Created by glennsmith on 12/23/2017.
 //
 
-#ifndef NEATSCROLL_HIGHPERFORMANCETIMER_H
-#define NEATSCROLL_HIGHPERFORMANCETIMER_H
+#ifndef NEATSCROLL_HIGHPERFORMANCETIMER_HPP
+#define NEATSCROLL_HIGHPERFORMANCETIMER_HPP
 
-#include "Timer.h"
+#include "Timer.hpp"
 #include <Windows.h>
 
 class HighPerformanceTimer : public Timer {
@@ -17,4 +17,4 @@ public:
 };
 
 
-#endif //NEATSCROLL_HIGHPERFORMANCETIMER_H
+#endif //NEATSCROLL_HIGHPERFORMANCETIMER_HPP

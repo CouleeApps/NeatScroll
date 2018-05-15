@@ -4,12 +4,12 @@
 #include <SynapticsTouchpad.hpp>
 #include <MovementDetector.hpp>
 #include <GestureHandler.hpp>
-#include <Actions/ConditionalPerformer.h>
-#include <Actions/KeyPressPerformer.h>
-#include <Gestures/SwipeGestureRecognizer.h>
-#include <ProcessDetector.h>
-#include <WindowDetector.h>
-#include <HighPerformanceTimer.h>
+#include <Actions/ConditionalPerformer.hpp>
+#include <Actions/KeyPressPerformer.hpp>
+#include <Gestures/SwipeGestureRecognizer.hpp>
+#include <ProcessDetector.hpp>
+#include <WindowDetector.hpp>
+#include <HighPerformanceTimer.hpp>
 #include <thread>
 
 int main(int argc, const char **argv) {

@@ -2,8 +2,8 @@
 // Created by glennsmith on 12/17/2017.
 //
 
-#ifndef NEATSCROLL_CONDITIONALPERFORMER_H
-#define NEATSCROLL_CONDITIONALPERFORMER_H
+#ifndef NEATSCROLL_CONDITIONALPERFORMER_HPP
+#define NEATSCROLL_CONDITIONALPERFORMER_HPP
 
 #include "Gesture.hpp"
 #include <functional>
@@ -40,4 +40,4 @@ bool ConditionalPerformer::onGestureStop(const Movement &movement) {
 	return mPerformer.onGestureStop(movement);
 }
 
-#endif //NEATSCROLL_CONDITIONALPERFORMER_H
+#endif //NEATSCROLL_CONDITIONALPERFORMER_HPP

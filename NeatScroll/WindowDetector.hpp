@@ -2,8 +2,8 @@
 // Created by glennsmith on 12/24/2017.
 //
 
-#ifndef NEATSCROLL_WINDOWDETECTOR_H
-#define NEATSCROLL_WINDOWDETECTOR_H
+#ifndef NEATSCROLL_WINDOWDETECTOR_HPP
+#define NEATSCROLL_WINDOWDETECTOR_HPP
 
 
 #include <string>
@@ -16,4 +16,4 @@ public:
 	bool isWindowDetected() const;
 };
 
-#endif //NEATSCROLL_WINDOWDETECTOR_H
+#endif //NEATSCROLL_WINDOWDETECTOR_HPP

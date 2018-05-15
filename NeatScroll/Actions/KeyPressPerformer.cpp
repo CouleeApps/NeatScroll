@@ -3,7 +3,7 @@
 //
 
 #include "stdafx.h"
-#include "KeyPressPerformer.h"
+#include "KeyPressPerformer.hpp"
 #include <Windows.h>
 
 KeyPressPerformer::KeyPressPerformer(const std::vector<int> &mKeycodes) : mKeycodes(mKeycodes) {}

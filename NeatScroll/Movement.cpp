@@ -1,5 +1,5 @@
 #include "stdafx.h"
-#include "Movement.h"
+#include "Movement.hpp"
 
 std::vector<glm::lvec3> Movement::getDeltas(const std::vector<Touchpad::TouchPoint> &start,
         const std::vector<Touchpad::TouchPoint> &end) {

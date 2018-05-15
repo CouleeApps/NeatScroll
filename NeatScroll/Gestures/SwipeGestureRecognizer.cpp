@@ -3,7 +3,7 @@
 //
 
 #include "stdafx.h"
-#include "SwipeGestureRecognizer.h"
+#include "SwipeGestureRecognizer.hpp"
 
 bool SwipeGestureRecognizer::onMovementStart(const Movement &movement) {
 	if (movement.mPointCount != mFingerCount) {

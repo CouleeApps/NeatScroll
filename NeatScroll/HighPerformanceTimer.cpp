@@ -3,7 +3,7 @@
 //
 
 #include "stdafx.h"
-#include "HighPerformanceTimer.h"
+#include "HighPerformanceTimer.hpp"
 
 
 void HighPerformanceTimer::start() {
