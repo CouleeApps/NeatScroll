@@ -89,9 +89,10 @@ int main(int argc, const char **argv) {
 		}
 
 		long palm;
-		if (touchpad.getProperty(SP_PalmThreshold, &palm) && palm != 0) {
-			touchpad.setProperty(SP_PalmThreshold, 0);
+		if (touchpad.getDeviceProperty(SP_PalmThreshold, &palm) && palm != 0) {
+			touchpad.setDeviceProperty(SP_PalmThreshold, 0);
 			printf("Disabling palm detection\n");
+			touchpad.persistState();
 		}
 
 		//Performance

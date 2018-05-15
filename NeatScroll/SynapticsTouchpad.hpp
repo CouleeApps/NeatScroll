@@ -37,8 +37,12 @@ public:
 	bool postMouseDown(Buttons buttons) override;
 	bool postMouseUp(Buttons buttons) override;
 
-	bool setProperty(SynDeviceProperty property, long value);
-	bool getProperty(SynDeviceProperty property, long *value);
+	bool setDeviceProperty(SynDeviceProperty property, long value);
+	bool getDeviceProperty(SynDeviceProperty property, long *value);
+	bool setAPIProperty(SynAPIProperty property, long value);
+	bool getAPIProperty(SynAPIProperty property, long *value);
+	bool persistState();
+	bool restoreState();
 
 private:
 	HANDLE mEvent;

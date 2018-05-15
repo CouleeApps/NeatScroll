@@ -201,12 +201,32 @@ long SynapticsTouchpad::buttonsToButtonState(Touchpad::Buttons buttons) {
 	return buttonState;
 }
 
-bool SynapticsTouchpad::setProperty(SynDeviceProperty property, long value) {
+bool SynapticsTouchpad::setDeviceProperty(SynDeviceProperty property, long value) {
 	OK_OR_FALSE(mDevice->SetProperty(property, value));
 	return true;
 }
 
-bool SynapticsTouchpad::getProperty(SynDeviceProperty property, long *value) {
+bool SynapticsTouchpad::getDeviceProperty(SynDeviceProperty property, long *value) {
 	OK_OR_FALSE(mDevice->GetProperty(property, value));
+	return true;
+}
+
+bool SynapticsTouchpad::setAPIProperty(SynAPIProperty property, long value) {
+	OK_OR_FALSE(mAPI->SetProperty(property, value));
+	return true;
+}
+
+bool SynapticsTouchpad::getAPIProperty(SynAPIProperty property, long *value) {
+	OK_OR_FALSE(mAPI->GetProperty(property, value));
+	return true;
+}
+
+bool SynapticsTouchpad::persistState() {
+	OK_OR_FALSE(mAPI->PersistState(0));
+	return true;
+}
+
+bool SynapticsTouchpad::restoreState() {
+	OK_OR_FALSE(mAPI->RestoreState(0));
 	return true;
 }
