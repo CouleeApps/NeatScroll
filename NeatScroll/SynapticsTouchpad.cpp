@@ -26,6 +26,7 @@ bool SynapticsTouchpad::connect() {
 	//Create an event to use for polling updates to the touchpad
 	OR_FALSE((mEvent = CreateEvent(NULL, FALSE, FALSE, NULL)) != NULL);
 	OK_OR_FALSE(mDevice->SetEventNotification(mEvent));
+	OK_OR_FALSE(mAPI->SetEventNotification(mEvent));
 
 	//Enable multi finger support
 	OK_OR_FALSE(mDevice->SetProperty(SP_IsMultiFingerReportEnabled, 1));
@@ -76,7 +77,7 @@ bool SynapticsTouchpad::poll() {
 	OR_FALSE(WaitForSingleObject(mEvent, 0) != WAIT_FAILED);
 
 	acquire(false);
-
+	
 	//Poll the events until we can't
 	while (mDevice->LoadGroup(mGroup) != SYNE_FAIL && mGroup) {
 		std::vector<TouchPoint> points;
@@ -133,6 +134,27 @@ bool SynapticsTouchpad::poll() {
 			mHandler->update(points);
 		}
 	}
+
+	//Check if the touchpad has disconnected. If it has, we'll get a SE_DevicedAdded and a SE_DeviceRemoved event (same time?)
+	// If we get either of those then our current handle is disconnected so we will need to reconnect.
+	bool needReconnect = false;
+	LONG eventType;
+	while (mAPI->GetEventParameter(&eventType) != SYNE_FAIL) {
+		switch (eventType) {
+		case SE_DeviceAdded:
+		case SE_DeviceRemoved:
+			//Need to reconnect
+			needReconnect = true;
+			break;
+		default:
+			break;
+		}
+	}
+	if (needReconnect) {
+		OR_FALSE(disconnect());
+		OR_FALSE(connect());
+	}
+
 	return true;
 }
 
