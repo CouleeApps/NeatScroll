@@ -27,16 +27,17 @@ set(SOURCE_FILES
         NeatScroll/WindowDetector.h
 )
 
-source_group("Actions" REGULAR_EXPRESSION Actions/.*)
+source_group("Actions" REGULAR_EXPRESSION Actions/.*)	
 source_group("Gestures" REGULAR_EXPRESSION Gestures/.*)
 
 add_library(NeatScroll STATIC ${SOURCE_FILES})
-target_link_libraries(NeatScroll ${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/Lib/x64/SynCom.lib)
 
 link_directories("3rdparty/Lib/x64")
 include_directories(3rdparty/Include)
 include_directories("${CMAKE_CURRENT_SOURCE_DIR}/NeatScroll")
 add_definitions(-DUNICODE -D_UNICODE)
+target_link_libraries(NeatScroll SynCom)
 
 add_executable(TestGestures TestGestures/TestGestures.cpp)
 target_link_libraries(TestGestures NeatScroll)
+target_link_libraries(TestGestures SynCom)
